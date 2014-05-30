@@ -13,7 +13,7 @@ When creating a new blog on WordPress Multisite, copies all the posts, settings 
 
 In WordPress Multisite, new sites get a boring default template, without any custom settings or starter content.
 
-This plugins allows you to select a specific blog on your network, a "master" one, that will be cloned every time a new blog is created.
+This plugin allows you to select a specific blog on your network, a "master" one, that will be cloned every time a new blog is created.
 
 In this way, new blogs will contain all posts, uploads, theme settings and plugin options from the master blog. 
 
