@@ -19,7 +19,7 @@ In this way, new blogs will contain all posts, uploads, theme settings and plugi
 
 = How does it work? =
 
-1. It uses MySQL `INSERT INTO ... SELECT` to copy *every* table from the "master" blog into the new one.
+1. It uses MySQL `INSERT INTO ... SELECT` to copy *every* table from the "master" blog into the new one. This is fast!
 1. Then it does a search and replace on the new blog's tables, to replace the old URL with the new one. 
 This is done in a way that respects serialized arrays, so your plugin's settings will be preserved.
 (We used a heavily trimmed down version of Interconnect/IT's [Search and Replace](https://github.com/interconnectit/Search-Replace-DB) tool for that, so go thank them for this!)
