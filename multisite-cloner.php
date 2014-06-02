@@ -46,7 +46,7 @@ class MultiSiteCloner {
     
     function __construct() {
         register_activation_hook( __FILE__, array( &$this, 'install_multisite_cloner' ) );
-        add_action( 'init', array( &$this, 'init_multisite_cloner' ) );
+        add_action( 'admin_init', array( &$this, 'init_multisite_cloner' ) );
     }
 
     private function get_main_blog_id() {
