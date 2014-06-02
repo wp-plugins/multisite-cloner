@@ -26,16 +26,6 @@
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-/*
-Dejaré mi tierra por tí,
-dejaré mis campos y me iré,
-lejos de aquí.
-
-Cruzaré llorando el jardín,
-y con tus recuerdos partiré,
-lejos de aquí.
-*/
-
 !defined( 'ABSPATH' ) AND exit("Oops!");
 
 add_action('plugins_loaded', array( MultiSiteCloner::get_instance(), 'plugin_setup' ));
@@ -423,3 +413,13 @@ function cloner_recurse_copy($src, $dst) {
 
     closedir($dir); 
 }
+
+/*
+Dejare mi tierra por ti,
+dejare mis campos y me ire,
+lejos de aqui.
+
+Cruzare llorando el jardin,
+y con tus recuerdos partire,
+lejos de aqui.
+*/
