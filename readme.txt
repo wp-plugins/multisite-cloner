@@ -61,6 +61,9 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Changelog ==
 
+= 0.1.5 =
+* Independence of the uploads directory structure. ([Issue: Gives warning after creating subdomain site](http://wordpress.org/support/topic/gives-warning-after-creating-subdomain-site))
+
 = 0.1.4 =
 * First public release.
 * Disabled cloning of the main site in the network. Risky stuff.
@@ -80,5 +83,5 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Upgrade Notice ==
 
-= 0.1.4 =
-This is the first public release.
+= 0.1.5 =
+* Independence of the uploads directory structure.

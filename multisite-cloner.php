@@ -4,7 +4,7 @@
  * Plugin Name: Multisite Cloner
  * Plugin URI: https://wordpress.org/plugins/multisite-cloner
  * Description: When creating a new blog on WordPress Multisite, copies all the posts, settings and files, from a selected blog into the new one.
- * Version: 0.1.4
+ * Version: 0.1.5
  * Author: Manuel Razzari & Patricio Tarantino
  * Author URI: http://tipit.net
  * License: License: GPL2+
@@ -142,7 +142,6 @@ class MultiSiteCloner {
     }
 
     function set_new_blog( $blog_id=false ) {
-
         global $wpdb;
 
         if ( isset($_POST['wpmuclone_default_blog']) ) {
@@ -192,8 +191,12 @@ class MultiSiteCloner {
             $new_tables[] = $new_table;
         }
 
-        $old_uploads = 'wp-content/uploads/sites/' . $id_default_blog;
-        $new_uploads = 'wp-content/uploads/sites/' . $blog_id;
+        $wp_uploads_dir = wp_upload_dir();
+        $base_dir = $wp_uploads_dir['basedir'];
+        $relative_base_dir = str_ireplace(get_home_path(), '', $base_dir);
+
+        $old_uploads = str_ireplace($blog_id, $id_default_blog, $relative_base_dir);;
+        $new_uploads = $relative_base_dir;
 
         // Replace URLs and paths in the DB
         
@@ -206,8 +209,8 @@ class MultiSiteCloner {
         update_option('admin_email',$admin_email);
 
         // Copy Files
-        $new_uploads = '../../' . $new_uploads;
-        $old_uploads = '../../' . $old_uploads;
+        $old_uploads = str_ireplace($blog_id, $id_default_blog, $base_dir);;
+        $new_uploads = $base_dir;;
 
         cloner_recurse_copy($old_uploads, $new_uploads);
 
