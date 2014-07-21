@@ -62,6 +62,7 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 == Changelog ==
 
 = 0.1.7 =
+* The plugin now works on directory-based installs (Fixes [problem with duplicate file path](http://wordpress.org/support/topic/duplicates-file-path) reported by JigMedia)
 * Handle case of new networks that still haven't created any sites to clone from.
 
 = 0.1.6 =
@@ -89,5 +90,5 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Upgrade Notice ==
 
-= 0.1.6 =
-* Fixes user roles error on installs with a non-default db prefix.
+= 0.1.7 =
+* The plugin now works on directory-based installs.
