@@ -5,7 +5,7 @@
  * Plugin URI: https://wordpress.org/plugins/multisite-cloner
  * Description: When creating a new blog on WordPress Multisite, copies all the posts, settings and files, from a selected blog into the new one.
  * Version: 0.1.6
- * Author: Manuel Razzari & Patricio Tarantino
+ * Author: Manuel Razzari, Patricio Tarantino
  * Author URI: http://tipit.net
  * License: License: GPL2+
 **/
@@ -116,18 +116,26 @@ class MultiSiteCloner {
                         <th scope="row"><label for="wpmuclone_default_blog">Default Blog</label></th>
                         <td>
                         <select name="wpmuclone_default_blog" id="wpmuclone_default_blog">
+                            <option value="0">No default blog</option>
                         <?php
                         $blog_list = wp_get_sites(array('limit' => 0 ));
                         $main_blog_id = $this->get_main_blog_id();
+                        $blog_list_counter = 0;
                         foreach ($blog_list as $blog) { 
-                            if($blog['blog_id'] != $main_blog_id ):
-                            ?>
-                            <option value="<?php echo $blog['blog_id'];?>" <?php if (get_option('wpmuclone_default_blog') == $blog['blog_id'] ): ?> selected <?php endif; ?>><?php echo get_blog_details( $blog['blog_id'], 'blogname' )->blogname ; ?> ( <?php echo $blog['domain']; ?>)</option>
-                            <?php
-                            endif;
+                            if($blog['blog_id'] != $main_blog_id ){
+                                $blog_list_counter++;
+                                ?>
+                                <option value="<?php echo $blog['blog_id'];?>" <?php if (get_option('wpmuclone_default_blog') == $blog['blog_id'] ){ ?> selected <?php } ?>><?php echo get_blog_details( $blog['blog_id'], 'blogname' )->blogname ; ?> ( <?php echo $blog['domain']; ?>)</option>
+                                <?php
+                            }
                         }
                         ?>                   
                         </select>
+                        <?php if (!$blog_list_counter){ ?>
+                            <div class="error">
+                                <p>The plugin won&rsquo;t work until you have created a site in your network. (The main site should never be cloned.) </p>
+                            </div>
+                        <? } ?>
                         </td>
                     </tr>
                 </table>
@@ -149,7 +157,8 @@ class MultiSiteCloner {
         } else {
             $id_default_blog = get_option('wpmuclone_default_blog'); 
         }
-        
+
+        if (!$id_default_blog) { return false; }
 
         $old_url = 'http://' . get_blog_details($id_default_blog)->domain;
         

@@ -61,11 +61,14 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Changelog ==
 
+= 0.1.7 =
+* Handle case of new networks that still haven't created any sites to clone from.
+
 = 0.1.6 =
-* Fixes user roles error on installs with a non-default db prefix. (Fixes [problem with user roles after cloning](http://wordpress.org/support/topic/problem-with-user-roles-after-cloning-a-subdomain))
+* Fixes user roles error on installs with a non-default db prefix. (Fixes [problem with user roles after cloning](http://wordpress.org/support/topic/problem-with-user-roles-after-cloning-a-subdomain) reported by B_Dark)
 
 = 0.1.5 =
-* Independence of the uploads directory structure. (Fixes [warning after creating subdomain site](http://wordpress.org/support/topic/gives-warning-after-creating-subdomain-site))
+* Independence of the uploads directory structure. (Fixes [warning after creating subdomain site](http://wordpress.org/support/topic/gives-warning-after-creating-subdomain-site) reported by Pradip Nichite)
 
 = 0.1.4 =
 * First public release.
