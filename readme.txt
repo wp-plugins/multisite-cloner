@@ -61,6 +61,9 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Changelog ==
 
+= 0.1.7.1 =
+* Minor typo fix (Fixes [error on network activation](http://wordpress.org/support/topic/error-on-network-activation) reported by ammienoot)
+
 = 0.1.7 =
 * The plugin now works on directory-based installs (Fixes [problem with duplicate file path](http://wordpress.org/support/topic/duplicates-file-path) reported by JigMedia)
 * Handle case of new networks that still haven't created any sites to clone from.
@@ -90,5 +93,5 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Upgrade Notice ==
 
-= 0.1.7 =
-* The plugin now works on directory-based installs.
+= 0.1.7.1 =
+* Minor typo fix, caused activation errors for some users.
