@@ -61,6 +61,9 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Changelog ==
 
+= 0.1.8 =
+* Minor fix to avoid PHP warning if target directories already exist (Fixes [warning when creating new site](http://wordpress.org/support/topic/error-when-creating-new-site) reported by mr.gengu and beda69).
+
 = 0.1.7.1 =
 * Minor typo fix (Fixes [error on network activation](http://wordpress.org/support/topic/error-on-network-activation) reported by ammienoot)
 
@@ -93,5 +96,5 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Upgrade Notice ==
 
-= 0.1.7.1 =
-* Minor typo fix, caused activation errors for some users.
+= 0.1.8 =
+* Minor fix to avoid PHP warning if target directories already exist.
