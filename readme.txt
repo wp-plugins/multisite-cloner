@@ -61,6 +61,9 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Changelog ==
 
+= 0.1.9 =
+* Bug fix: Images in post were linked to the original blog.
+
 = 0.1.8 =
 * Minor fix to avoid PHP warning if target directories already exist (Fixes [warning when creating new site](http://wordpress.org/support/topic/error-when-creating-new-site) reported by mr.gengu and beda69).
 
@@ -96,5 +99,5 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Upgrade Notice ==
 
-= 0.1.8 =
-* Minor fix to avoid PHP warning if target directories already exist.
+= 0.1.9 =
+* Bug fix: Images in post were linked to the original blog.

@@ -4,7 +4,7 @@
  * Plugin Name: Multisite Cloner
  * Plugin URI: https://wordpress.org/plugins/multisite-cloner
  * Description: When creating a new blog on WordPress Multisite, copies all the posts, settings and files, from a selected blog into the new one.
- * Version: 0.1.8
+ * Version: 0.1.9
  * Author: Manuel Razzari, Patricio Tarantino
  * Author URI: http://tipit.net
  * License: License: GPL2+
@@ -208,7 +208,7 @@ class MultiSiteCloner {
         $new_uploads = $relative_base_dir;
 
         // Replace URLs and paths in the DB
-        
+
         cloner_db_replacer( array($old_url,$old_uploads), array($new_url,$new_uploads), $new_tables);
 
         // Update Title
@@ -218,7 +218,7 @@ class MultiSiteCloner {
         update_option('admin_email',$admin_email);
 
         // Copy Files
-        $old_uploads = str_ireplace($blog_id, $id_default_blog, $base_dir);;
+        $old_uploads = str_ireplace($blog_id, $id_default_blog, $base_dir);
         $new_uploads = $base_dir;;
 
         cloner_recurse_copy($old_uploads, $new_uploads);
@@ -380,24 +380,24 @@ function cloner_db_replacer( $search = '', $replace = '', $tables = array( ) ) {
                         $edited_data = cloner_recursive_unserialize_replace( $search, $replace, $data_to_fix );
 
                         // Something was changed
-                        if ( $edited_data != $data_to_fix ) {
-                            $update_sql[] = $column . ' = "' . ( $edited_data ) . '"';
+                        if ( $edited_data != $data_to_fix) {
+                            $update_sql[] = $column . ' = "' . mysql_real_escape_string( $edited_data ) . '"';
                             $upd = true;
                         }
-
                         if ( $primary_key )
-                            $where_sql[] = $column . ' = "' . ( $data_to_fix ) . '"';
+                            $where_sql[] = $column . ' = "' . mysql_real_escape_string( $data_to_fix ) . '"';
                     }
 
-                    if ( $upd && ! empty( $where_sql ) ) {
+                    if ( $upd && ! empty( $where_sql )) {
                         $sql = 'UPDATE ' . $table . ' SET ' . implode( ', ', $update_sql ) . ' WHERE ' . implode( ' AND ', array_filter( $where_sql ) );
-                        $result = $wpdb->query( $sql );
-   
+                        $result = $wpdb->query( $sql );   
                     }
+
 
                 }
 
             }
+
         }
 
     }
