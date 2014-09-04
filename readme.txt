@@ -2,7 +2,7 @@
 Contributors: manuelrazzari, pmtarantino
 Tags: multisite, wpmu, clone, copy, copy blog, defaults, new blog, network, default settings
 Requires at least: 3.0
-Tested up to: 3.9.1
+Tested up to: 4.0.0
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -61,6 +61,9 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Changelog ==
 
+= 0.1.10 =
+* Updated to be working with Wordpress 4.0.0
+
 = 0.1.9 =
 * Bug fix: Images in post were linked to the original blog.
 
@@ -99,5 +102,5 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Upgrade Notice ==
 
-= 0.1.9 =
-* Bug fix: Images in post were linked to the original blog.
+= 0.1.10 =
+* Updated to be working with Wordpress 4.0.0
