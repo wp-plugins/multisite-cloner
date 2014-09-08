@@ -62,7 +62,7 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 == Changelog ==
 
 = 0.1.10 =
-* Updated to be working with Wordpress 4.0.0
+* This version works with the latest Wordpress release (Wordpress 4.0.0)
 
 = 0.1.9 =
 * Bug fix: Images in post were linked to the original blog.
