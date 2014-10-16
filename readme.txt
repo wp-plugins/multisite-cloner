@@ -61,6 +61,9 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Changelog ==
 
+= 0.1.11 =
+* Fixes [problem with non-existents dirs](https://wordpress.org/support/topic/pull-request-error-while-copying-a-dir-while-cloning)
+
 = 0.1.10 =
 * This version works with the latest Wordpress release (Wordpress 4.0.0)
 
@@ -102,5 +105,5 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Upgrade Notice ==
 
-= 0.1.10 =
-* Updated to be working with Wordpress 4.0.0
+= 0.1.11 =
+* Fixes [problem with non-existents dirs](https://wordpress.org/support/topic/pull-request-error-while-copying-a-dir-while-cloning)

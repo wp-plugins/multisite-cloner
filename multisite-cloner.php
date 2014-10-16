@@ -4,7 +4,7 @@
  * Plugin Name: Multisite Cloner
  * Plugin URI: https://wordpress.org/plugins/multisite-cloner
  * Description: When creating a new blog on WordPress Multisite, copies all the posts, settings and files, from a selected blog into the new one.
- * Version: 0.1.10
+ * Version: 0.1.11
  * Author: Manuel Razzari, Patricio Tarantino
  * Author URI: http://tipit.net
  * License: License: GPL2+
@@ -406,27 +406,34 @@ function cloner_db_replacer( $search = '', $replace = '', $tables = array( ) ) {
 
 /* RECURSIVELY COPY a directory.
    By gimmicklessgpt at http://php.net/manual/en/function.copy.php#91010 
+   Edited to work with empty dirs: https://wordpress.org/support/topic/pull-request-error-while-copying-a-dir-while-cloning
 */
-function cloner_recurse_copy($src, $dst) { 
+function cloner_recurse_copy($src, $dst) {
     $dir = opendir($src); 
-    
+
+    // maybe I am not a dir after all.
+    if(!$dir || !is_dir($dir)) {
+        mkdir($dir);
+    }
+
     if (!file_exists($dst)) {
         mkdir($dst);
     }
 
-    while(false !== ( $file = readdir($dir)) ) { 
-        if (( $file != '.' ) && ( $file != '..' )) { 
-            if ( is_dir($src . '/' . $file) ) { 
-                cloner_recurse_copy($src . '/' . $file,$dst . '/' . $file); 
-            } 
-            else { 
-                copy($src . '/' . $file,$dst . '/' . $file); 
-            } 
-        } 
+    while(false !== ( $file = readdir($dir)) ) {
+        if (( $file != '.' ) && ( $file != '..' )) {
+            if ( is_dir($src . '/' . $file) ) {
+                cloner_recurse_copy($src . '/' . $file,$dst . '/' . $file);
+            }
+            else {
+                copy($src . '/' . $file,$dst . '/' . $file);
+            }
+        }
     } 
 
-    closedir($dir); 
+    closedir($dir);
 }
+
 
 /*
 Dejare mi tierra por ti,
