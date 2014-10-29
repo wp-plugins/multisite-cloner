@@ -4,7 +4,7 @@
  * Plugin Name: Multisite Cloner
  * Plugin URI: https://wordpress.org/plugins/multisite-cloner
  * Description: When creating a new blog on WordPress Multisite, copies all the posts, settings and files, from a selected blog into the new one.
- * Version: 0.1.11
+ * Version: 0.1.11.1
  * Author: Manuel Razzari, Patricio Tarantino
  * Author URI: http://tipit.net
  * License: License: GPL2+
@@ -412,8 +412,8 @@ function cloner_recurse_copy($src, $dst) {
     $dir = opendir($src); 
 
     // maybe I am not a dir after all.
-    if(!$dir || !is_dir($dir)) {
-        mkdir($dir);
+    if(!$dir || !is_dir($src)) {
+        mkdir($src);
     }
 
     if (!file_exists($dst)) {

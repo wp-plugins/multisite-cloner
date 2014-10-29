@@ -61,6 +61,9 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Changelog ==
 
+= 0.1.11.1 =
+* Fixes minor [problem with the clone recursive copy function](https://wordpress.org/support/topic/error-while-adding-a-new-site)
+
 = 0.1.11 =
 * Fixes [problem with non-existents dirs](https://wordpress.org/support/topic/pull-request-error-while-copying-a-dir-while-cloning)
 
@@ -105,5 +108,5 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Upgrade Notice ==
 
-= 0.1.11 =
-* Fixes [problem with non-existents dirs](https://wordpress.org/support/topic/pull-request-error-while-copying-a-dir-while-cloning)
+= 0.1.11.1 =
+* Fixes minor problem with the clone recursive copy function.
