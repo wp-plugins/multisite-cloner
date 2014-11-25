@@ -204,7 +204,11 @@ class MultiSiteCloner {
         $base_dir = $wp_uploads_dir['basedir'];
         $relative_base_dir = str_ireplace(get_home_path(), '', $base_dir);
 
-        $old_uploads = str_ireplace($blog_id, $id_default_blog, $relative_base_dir);;
+        // I need to get the previous folder before the id, just in case this is different to 'sites'
+        $dirs_relative_base_dirs = explode('/',$relative_base_dir);
+        $sites_dir = $dirs_relative_base_dirs[count($dirs_relative_base_dirs)-2];
+
+        $old_uploads = str_ireplace('/'.$sites_dir.'/'.$blog_id, '/'.$sites_dir.'/'.$id_default_blog, $relative_base_dir);
         $new_uploads = $relative_base_dir;
 
         // Replace URLs and paths in the DB
@@ -218,7 +222,7 @@ class MultiSiteCloner {
         update_option('admin_email',$admin_email);
 
         // Copy Files
-        $old_uploads = str_ireplace($blog_id, $id_default_blog, $base_dir);
+        $old_uploads = str_ireplace('/'.$sites_dir.'/'.$blog_id, '/'.$sites_dir.'/'.$id_default_blog, $base_dir);
         $new_uploads = $base_dir;;
 
         cloner_recurse_copy($old_uploads, $new_uploads);
