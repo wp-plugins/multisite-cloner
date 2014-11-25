@@ -61,6 +61,9 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Changelog ==
 
+= 0.1.12 =
+* This plugin now works on install on a (path that includes numbers)[https://wordpress.org/support/topic/bug-on-copy-file] (avoid collisions with blogs ids), and (support https blogs too)[https://wordpress.org/support/topic/https-fails-cloner_db_replacer].
+
 = 0.1.11.1 =
 * Fixes minor [problem with the clone recursive copy function](https://wordpress.org/support/topic/error-while-adding-a-new-site)
 
@@ -108,5 +111,5 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Upgrade Notice ==
 
-= 0.1.11.1 =
-* Fixes minor problem with the clone recursive copy function.
+= 0.1.12 =
+* This plugin now works on install on a path that includes numbers (avoid collisions with blogs ids), and support https blogs too.
