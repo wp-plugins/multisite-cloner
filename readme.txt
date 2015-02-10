@@ -61,6 +61,9 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Changelog ==
 
+= 0.1.13 =
+* Disable to clone the Main Blog from the Network Sites.
+
 = 0.1.12 =
 * This plugin now works on install on a [path that includes numbers](https://wordpress.org/support/topic/bug-on-copy-file) (avoid collisions with blogs ids), and [support https blogs too](https://wordpress.org/support/topic/https-fails-cloner_db_replacer).
 
@@ -111,5 +114,5 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Upgrade Notice ==
 
-= 0.1.12 =
-* This plugin now works on install on a path that includes numbers (avoid collisions with blogs ids), and support https blogs too.
+= 0.1.13 =
+* Disable to clone the Main Blog from the Network Sites.
