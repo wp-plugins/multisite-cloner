@@ -61,11 +61,14 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Changelog ==
 
+= 0.2.0 =
+* New feature: optionally clone users from the master blog. As [suggested by @wppower](https://wordpress.org/support/topic/plugin-works-great-but-doesnt-copy-users-from-master).
+
 = 0.1.13 =
-* Disable to clone the Main Blog from the Network Sites.
+* Disable cloning of the Main blog from the All Sites network admin.
 
 = 0.1.12 =
-* This plugin now works on install on a [path that includes numbers](https://wordpress.org/support/topic/bug-on-copy-file) (avoid collisions with blogs ids), and [support https blogs too](https://wordpress.org/support/topic/https-fails-cloner_db_replacer).
+* This plugin now works on an install [path that includes numbers](https://wordpress.org/support/topic/bug-on-copy-file) (avoid collisions with blogs ids), and [supports HTTPS blogs too](https://wordpress.org/support/topic/https-fails-cloner_db_replacer).
 
 = 0.1.11.1 =
 * Fixes minor [problem with the clone recursive copy function](https://wordpress.org/support/topic/error-while-adding-a-new-site)
@@ -114,5 +117,5 @@ You'll probably want to create a "master" blog to clone from, if you don't have 
 
 == Upgrade Notice ==
 
-= 0.1.13 =
-* Disable to clone the Main Blog from the Network Sites.
+= 0.2.0 =
+* New feature: optionally copy users too, into the cloned blog.

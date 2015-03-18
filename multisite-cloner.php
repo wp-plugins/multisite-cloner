@@ -90,11 +90,17 @@ class MultiSiteCloner {
     function wp_mu_clone_settings() {
         if ( !empty( $_POST[ 'action' ] ) ) {
             update_option('wpmuclone_default_blog', $_POST['wpmuclone_default_blog']);
+            update_option('wpmuclone_copy_users', isset($_POST['wpmuclone_copy_users']) );
         }
+
+        $main_blog_id = $this->get_main_blog_id();
 
         ?>
         <div class="wrap">
             <style>
+                .settings_page_wp_mu_clone_settings .wrap {
+                    max-width: 600px;
+                }
                 #wpbody {
                     background: url(<?php echo plugin_dir_url( __FILE__) ?>/flying-dolly.png) 96% 5% no-repeat;
                     background-size: 200px;
@@ -108,9 +114,10 @@ class MultiSiteCloner {
             <h2>Multisite Cloner Settings</h2>
             <form method="post">
                 <?php settings_fields( 'default' ); ?>
-                <h3>Select a default blog to be cloned.</h3>
+                <h3>Default blog to be cloned</h3>
                 <p>All the data from this blog will be copied into new blogs.</p>
                 <p>This includes settings, posts and other content, theme options, and uploaded files.</p>
+                <p>Note: the main site in your network (id = <?php echo $main_blog_id ?>) can't be cloned, as it contains many DB tables, assets and sensitive information that shouldn't be replicated to other blogs.</p>
                 <table class="form-table">
                     <tr valign="top">
                         <th scope="row"><label for="wpmuclone_default_blog">Default Blog</label></th>
@@ -119,7 +126,6 @@ class MultiSiteCloner {
                             <option value="0">No default blog</option>
                         <?php
                         $blog_list = wp_get_sites(array('limit' => 0 ));
-                        $main_blog_id = $this->get_main_blog_id();
                         $blog_list_counter = 0;
                         foreach ($blog_list as $blog) { 
                             if($blog['blog_id'] != $main_blog_id ){
@@ -136,6 +142,17 @@ class MultiSiteCloner {
                                 <p>The plugin won&rsquo;t work until you have created a site in your network. (The main site should never be cloned.) </p>
                             </div>
                         <?php } ?>
+                        </td>
+                    </tr>
+                </table>
+                <table class="form-table">
+                    <h3>Global clone settings</h3>
+                    <p>These settings apply to the default blog selected above, and to blogs copied using the &ldquo;Clone&rdquo; link on the &ldquo;All Sites&rdquo; network admin page.</p>
+                    <tr valign="top">
+                        <th scope="row"><label for="wpmuclone_copy_users">Copy users too</label></th>
+                        <td>
+                        <input type="checkbox" name="wpmuclone_copy_users" id="wpmuclone_copy_users" <?php if (get_option('wpmuclone_copy_users') ){ ?> checked <?php } ?> >
+                        <p class="description">Check this if you want to copy all users from the source blog into the new cloned blog.</p>
                         </td>
                     </tr>
                 </table>
@@ -157,6 +174,7 @@ class MultiSiteCloner {
         } else {
             $id_default_blog = get_option('wpmuclone_default_blog'); 
         }
+        $copy_users = get_option('wpmuclone_copy_users');
 
         if (!$id_default_blog) { return false; }
 
@@ -234,6 +252,29 @@ class MultiSiteCloner {
         // User Roles
         $user_roles_sql = "UPDATE $prefix" . $blog_id . "_options SET option_name = '$prefix" . $blog_id . "_user_roles' WHERE option_name = '$prefix" . $id_default_blog . "_user_roles';";
         $wpdb->query($user_roles_sql);
+
+        // Copy users
+        if ( $copy_users ){
+            $users = get_users('blog_id='.$id_default_blog);
+
+            function user_array_map( $a ){ return $a[0]; }
+
+            foreach($users as $user){
+                   
+                $all_meta = array_map( 'user_array_map', get_user_meta( $user->ID ) );
+
+                foreach ($all_meta as $metakey => $metavalue) {
+                    $prefix_len = strlen($prefix . $id_default_blog);
+
+                    $metakey_prefix = substr($metakey, 0, $prefix_len);
+                    if($metakey_prefix == $prefix . $id_default_blog) {
+                        $raw_meta_name = substr($metakey,$prefix_len);
+                        update_user_meta( $user->ID, $prefix . $blog_id . $raw_meta_name, maybe_unserialize($metavalue) );
+                    }
+                }
+
+            }
+        }
 
         // Restores main blog
         switch_to_blog( get_option('wpmuclone_default_blog') );
